@@ -16,7 +16,7 @@
    print('');
    print('Q2: How many tweets(%) did the top 10 users measured by the number of messages publish');
    var total_msg = db.tt.find().count();
-   var top_10 = db.tt.aggregate([{$group:{_id:"$id_member",num_tweets:{$sum:1}}},{$sort:{num_tweets:-1}},{$limit:10}])
+   var top_10 = db.tt.aggregate([{$group : {_id : "$id_member",nun_tutorial : {$sum : 1}}}, {$sort : {num_tutorial : -1}},{$limit : 10}])
 // a =top_10.toString();
 // var top_10clean= a.string.REPLACE('-','');
    print("Top10 users information:" + JSON.stringify(top_10));
@@ -24,7 +24,7 @@
 // t =t_10[i];
 // for (i=0;i<10;i++) {
 // 		t10_tweets =t10_tweets + top['num_tweets'];
-// 		var percent = Math.round(t10_tweets/total_msg*10000)/100.00 +"%";
+// 		var percent = Math.round(t10_tweets/total_tweets*10000)/100.00 +"%";
 // 	
 // }   
    if(top_10.length){
@@ -61,12 +61,12 @@
 
 	print(seperate_line);
 	print('Q4: What is the mean time delta between all message?');
-	var total_msg = db.tt.find().count();
+	var total_tweets = db.tt.find().count();
 	var y1 =new Date('2014/06/22 23:00:00');
 	var y2 =new Date('2014/06/30 21:59:59');
 	var time=(y2.getTime()-y1.getTime())/1000; 
 	
-	var mean_msg= time/total_msg;
+	var mean_msg= time/total_tweets;
 	print('The time interval(s):'+time);
 	print('The mean time delta(s)' + mean_msg);
 
@@ -77,10 +77,10 @@
 	print('Query5: What is the mean length of a message?');
 	var s = 0;
 	var len=null;
-	var total_msg = db.tt.find().count();
+	var total_tweets = db.tt.find().count();
 	db.tt.find({},{"text":1 , "_id":0}).forEach(function(q5){
 		len +=  q5.text;
-		result= Math.ceil(len.length/total_msg);
+		result= Math.ceil(len.length/total_tweets);
 	})
 	print("the mean length of a massage:" + result+" (integral)");
 	
@@ -89,20 +89,20 @@
 	print(seperate_line);
 
 //question7
-
 	print(seperate_line);
 	print('');
 	print('Q7:What is the average number of hashtags (#) used within a message?');
 	var s = 0;
 	var len='';
-	var total_msg = db.tt.find().count();
+	var total_tweets = db.tt.find().count();
 	db.tt.find({},{"text":0 , "_id":0}).forEach(function(q7){
 		len +=  q7.text;		
 		
 	})
 	result7 = len.split("#").length-1;
 
-	print("the mean length of a massage:" +"aaa"+result7);
+	print("the mean length of a massage:" +result7);
+
 
 //question8
 
