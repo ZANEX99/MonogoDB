@@ -24,7 +24,7 @@
 // t =t_10[i];
 // for (i=0;i<10;i++) {
 // 		t10_tweets =t10_tweets + top['num_tweets'];
-// 		var percent = Math.round(t10_tweets/total_tweets*10000)/100.00 +"%";
+// 		var percent = Math.round(t10_tweets/total_msg*10000)/100.00 +"%";
 // 	
 // }   
    if(top_10.length){
@@ -61,12 +61,12 @@
 
 	print(seperate_line);
 	print('Q4: What is the mean time delta between all message?');
-	var total_tweets = db.tt.find().count();
+	var total_msg = db.tt.find().count();
 	var y1 =new Date('2014/06/22 23:00:00');
 	var y2 =new Date('2014/06/30 21:59:59');
 	var time=(y2.getTime()-y1.getTime())/1000; 
 	
-	var mean_msg= time/total_tweets;
+	var mean_msg= time/total_msg;
 	print('The time interval(s):'+time);
 	print('The mean time delta(s)' + mean_msg);
 
@@ -77,10 +77,10 @@
 	print('Query5: What is the mean length of a message?');
 	var s = 0;
 	var len=null;
-	var total_tweets = db.tt.find().count();
+	var total_msg = db.tt.find().count();
 	db.tt.find({},{"text":1 , "_id":0}).forEach(function(q5){
 		len +=  q5.text;
-		result= Math.ceil(len.length/total_tweets);
+		result= Math.ceil(len.length/total_msg);
 	})
 	print("the mean length of a massage:" + result+" (integral)");
 	
@@ -95,7 +95,7 @@
 	print('Q7:What is the average number of hashtags (#) used within a message?');
 	var s = 0;
 	var len='';
-	var total_tweets = db.tt.find().count();
+	var total_msg = db.tt.find().count();
 	db.tt.find({},{"text":0 , "_id":0}).forEach(function(q7){
 		len +=  q7.text;		
 		
